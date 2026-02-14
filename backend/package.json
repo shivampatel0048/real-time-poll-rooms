@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "tsx watch src/server.ts",
         "build": "tsc",
-        "start": "tsx src/server.ts",
+        "start": "npx tsx src/server.ts",
         "test": "jest",
         "lint": "eslint src --ext .ts",
         "migrate": "node -r tsx/cjs src/config/migrate.ts"
