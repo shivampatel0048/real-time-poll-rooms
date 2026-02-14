@@ -6,18 +6,24 @@ const env = validateEnv();
 
 const pool = new Pool({
     connectionString: env.DATABASE_URL,
-    max: env.NODE_ENV === "production" ? 3 : 10,
-    min: 1,
-    idleTimeoutMillis: 120000,
+    max: env.NODE_ENV === "production" ? 5 : 10,
+    min: 2,
+    idleTimeoutMillis: 300000,
     connectionTimeoutMillis: 30000,
     allowExitOnIdle: false,
-    ssl: env.NODE_ENV === "production"
-        ? { rejectUnauthorized: false }
-        : { rejectUnauthorized: false },
+    ssl: { rejectUnauthorized: false },
 });
 
 pool.on("error", (err: Error) => {
-    logger.error("Unexpected database error:", err);
+    logger.error("Unexpected database pool error:", err);
+});
+
+pool.on("connect", () => {
+    logger.log("New database connection established");
+});
+
+pool.on("remove", () => {
+    logger.log("Database connection removed from pool");
 });
 
 export async function query<T extends QueryResultRow = QueryResultRow>(
