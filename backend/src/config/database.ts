@@ -6,10 +6,13 @@ const env = validateEnv();
 
 const pool = new Pool({
     connectionString: env.DATABASE_URL,
-    max: 20,
-    idleTimeoutMillis: 30000,
+    max: env.NODE_ENV === "production" ? 3 : 10,
+    min: 1,
+    idleTimeoutMillis: 120000,
+    connectionTimeoutMillis: 30000,
+    allowExitOnIdle: false,
     ssl: env.NODE_ENV === "production"
-        ? { rejectUnauthorized: true }
+        ? { rejectUnauthorized: false }
         : { rejectUnauthorized: false },
 });
 
