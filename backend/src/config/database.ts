@@ -8,8 +8,9 @@ const pool = new Pool({
     connectionString: env.DATABASE_URL,
     max: 20,
     idleTimeoutMillis: 30000,
-    connectionTimeoutMillis: 2000,
-    ssl: env.NODE_ENV === "production" ? true : { rejectUnauthorized: false },
+    ssl: env.NODE_ENV === "production"
+        ? { rejectUnauthorized: true }
+        : { rejectUnauthorized: false },
 });
 
 pool.on("error", (err: Error) => {
