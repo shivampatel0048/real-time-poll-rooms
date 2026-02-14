@@ -2,7 +2,7 @@
     "name": "real-time-poll-rooms-backend",
     "version": "1.0.0",
     "description": "Real-time polling system backend with Express, PostgreSQL, and Socket.IO",
-    "main": "dist/server.js",
+    "main": "src/server.js",
     "scripts": {
         "dev": "tsx watch src/server.ts",
         "build": "tsc",
