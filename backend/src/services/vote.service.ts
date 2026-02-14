@@ -32,7 +32,7 @@ export async function submitVote(
             pollId: input.pollId,
             optionId: input.optionId,
             voterToken,
-            ipAddress,
+            ipAddress: ipAddress || null,
         });
     } catch (error) {
         // Handle duplicate vote attempt (race condition)

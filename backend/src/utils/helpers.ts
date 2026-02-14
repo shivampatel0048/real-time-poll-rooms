@@ -4,7 +4,7 @@ export function generateVoterToken(): string {
     return uuidv4();
 }
 
-export function getClientIp(req: { headers: Record<string, string | string[] | undefined>; socket?: { remoteAddress?: string } }): string | undefined {
+export function getClientIp(req: { headers: Record<string, string | string[] | undefined>; socket?: { remoteAddress?: string | undefined } }): string | undefined {
     const forwarded = req.headers["x-forwarded-for"];
 
     if (forwarded) {

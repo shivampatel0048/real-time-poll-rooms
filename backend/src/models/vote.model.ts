@@ -5,7 +5,7 @@ interface CreateVoteParams {
     pollId: string;
     optionId: string;
     voterToken: string;
-    ipAddress?: string;
+    ipAddress?: string | null;
 }
 
 export async function createVote(params: CreateVoteParams): Promise<Vote> {
